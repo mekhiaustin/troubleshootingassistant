@@ -1,38 +1,91 @@
-print("=================================")
-print("  PC Troubleshooting Assistant")
-print("=================================")
+troubleshooting_data = {
+    "power": {
+        "title": "Power Troubleshooting",
+        "steps": [
+            "Check that the computer is plugged into a working outlet.",
+            "Make sure the power cable is securely connected.",
+            "Try a different power cable if available.",
+            "Check the power supply and internal power connections."
+        ]
+    },
 
-print("\nWhat problem are you experiencing?")
-print("1. Computer won't turn on")
-print("2. No interent")
-print("3. Computer is running slowly")
-print("4. Computer is overheating")
+    "internet": {
+        "title": "Internet Troubleshooting",
+        "steps": [
+            "Make sure Wi-Fi is enabled.",
+            "Restart the router.",
+            "Check if other devices can connect to the internet.",
+            "Restart the computer.",
+            "Forget and reconnect to the Wi-Fi network."
+        ]
+    },
 
-choice=input("\nEnter your choice (1-4): ")
+    "performance": {
+        "title": "Performance Troubleshooting",
+        "steps": [
+            "Check how much storage space is available.",
+            "Close unnecessary programs.",
+            "Open Task Manager and check CPU, Memory, and GPU usage.",
+            "Look for unnecessary background processes."
+        ]
+    },
 
-if choice == "1":
-    print("\nTroubleshooting: Power Problem")
-    print("1. Check that the power cable is connected.")
-    print("2. Try a different power outlet.")
-    print("3. Check the power supply connections.")
+    "overheating": {
+        "title": "Overheating Troubleshooting",
+        "steps": [
+            "Make sure the computer fans are spinning properly.",
+            "Check for dust buildup around fans and vents.",
+            "Check CPU temperatures.",
+            "Make sure the computer has proper airflow.",
+            "Check that thermal paste is applied correctly."
+        ]
+    }
+}
 
-elif choice == "2":
-    print("\nTroubleshooting: Internet Problem")
-    print("1. Check that Wi-Fi is enabled.")
-    print("2. Restart your router.")
-    print("3. Restart your computer")
 
-elif choice == "3":
-    print("\nTroubleshooting: Performance Problem")
-    print("1. Check Task Manager for program using high resources.")
-    print("2. Close unnecessary programs.")
-    print("3. Check availible storage space.")
+def show_troubleshooting(category):
+    problem = troubleshooting_data[category]
 
-elif choice == "4":
-    print("\nTroubleshooting: Overheating Problem")
-    print("1. Check that the fans are working.")
-    print("2. Clean dust from the computer.")
-    print("3. Make sure the computer has proper airflow.")
+    print(f"\n--- {problem['title']} ---")
 
-else:
-    print("\nInvalid choice. Please select a number from 1-4.")
+    print("\nRecommended steps:")
+
+    for number, step in enumerate(problem["steps"], start=1):
+        print(f"{number}. {step}")
+
+def main():
+    while True:
+        print("\n=================================")
+        print("  PC Troubleshooting Assistant") 
+        print("=================================")
+
+        print("\nWhat problem are you experiencing?")
+        print("1. Computer won't turn on")
+        print("2. No internet")
+        print("3. Computer is running slowly")
+        print("4. Computer is overheating")
+        print("5. Exit")
+
+        choice = input("\nEnter your choice (1-5): ")
+
+        categories = {
+            "1": "power",
+            "2": "internet",
+            "3": "performance",
+            "4": "overheating",
+
+        }
+
+        if choice in categories:
+            show_troubleshooting(categories[choice])
+
+            input("\nPress Enter to return to the main menu...")
+
+        elif choice == "5":
+            print("\nThank you for using Mekhi's PC Troubleshooting Assistant. Goodbye!")
+            break
+
+        else:
+            print("\nInvalid choice. Please select a number from 1-5.")
+
+main()
